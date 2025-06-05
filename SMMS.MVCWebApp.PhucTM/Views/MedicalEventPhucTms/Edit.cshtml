@@ -1,0 +1,129 @@
+﻿@model SMMS.Repositories.PhucTM.Models.MedicalEventPhucTm
+
+@{
+    ViewData["Title"] = "Edit Medical Event";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-warning">✏️ Edit Medical Event</h2>
+
+    <div class="card shadow rounded-4 border-0 bg-light-subtle">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="MedicalEventPhucTmid" />
+
+                <div class="row">
+                    <!-- Cột trái -->
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select asp-for="EventTypePhucTmid" class="form-select" asp-items="ViewBag.EventTypePhucTmid"></select>
+                            <label asp-for="EventTypePhucTmid"></label>
+                            <span asp-validation-for="EventTypePhucTmid" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="OccurredAt" class="form-control" />
+                            <label asp-for="OccurredAt"></label>
+                            <span asp-validation-for="OccurredAt" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="ReportedBy" class="form-control" />
+                            <label asp-for="ReportedBy"></label>
+                            <span asp-validation-for="ReportedBy" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Description" class="form-control" />
+                            <label asp-for="Description"></label>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Symptoms" class="form-control" />
+                            <label asp-for="Symptoms"></label>
+                            <span asp-validation-for="Symptoms" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Temperature" class="form-control" />
+                            <label asp-for="Temperature"></label>
+                            <span asp-validation-for="Temperature" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Cột phải -->
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="BloodPressure" class="form-control" />
+                            <label asp-for="BloodPressure"></label>
+                            <span asp-validation-for="BloodPressure" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="HeartRate" class="form-control" />
+                            <label asp-for="HeartRate"></label>
+                            <span asp-validation-for="HeartRate" class="text-danger"></span>
+                        </div>
+
+                        <!-- Radio cho FirstAidGiven -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-dark">@Html.DisplayNameFor(m => m.FirstAidGiven)</label>
+                            <div class="d-flex gap-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="FirstAidGiven" value="true" checked="@Model.FirstAidGiven" />
+                                    <label class="form-check-label">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="FirstAidGiven" value="false" checked="@(!Model.FirstAidGiven)" />
+                                    <label class="form-check-label">No</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="FirstAidGiven" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="FirstAidDetails" class="form-control" />
+                            <label asp-for="FirstAidDetails"></label>
+                            <span asp-validation-for="FirstAidDetails" class="text-danger"></span>
+                        </div>
+
+                        <!-- Radio cho ParentNotified -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold text-dark">@Html.DisplayNameFor(m => m.ParentNotified)</label>
+                            <div class="d-flex gap-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ParentNotified" value="true" checked="@Model.ParentNotified" />
+                                    <label class="form-check-label">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" asp-for="ParentNotified" value="false" checked="@(!Model.ParentNotified)" />
+                                    <label class="form-check-label">No</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ParentNotified" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="FollowUpNote" class="form-control" />
+                            <label asp-for="FollowUpNote"></label>
+                            <span asp-validation-for="FollowUpNote" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary">← Back to List</a>
+                    <button type="submit" class="btn btn-warning shadow-sm">💾 Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

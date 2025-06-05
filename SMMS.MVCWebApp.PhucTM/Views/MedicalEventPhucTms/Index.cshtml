@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SMMS.Repositories.PhucTM.Models.MedicalEventPhucTm>
+
+@{
+    ViewData["Title"] = "Medical Events";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Medical Events</h2>
+        <a asp-action="Create" class="btn btn-primary">
+            ➕ Create New
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().OccurredAt)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().ReportedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Symptoms)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().Temperature)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().BloodPressure)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().HeartRate)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().FirstAidGiven)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().FirstAidDetails)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().ParentNotified)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().FollowUpNote)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().EventTypePhucTm)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.OccurredAt</td>
+                        <td>@item.ReportedBy</td>
+                        <td>@item.Description</td>
+                        <td>@item.Symptoms</td>
+                        <td>@item.Temperature</td>
+                        <td>@item.BloodPressure</td>
+                        <td>@item.HeartRate</td>
+                        <td>@(item.FirstAidGiven)</td>
+                        <td>@item.FirstAidDetails</td>
+                        <td>@(item.ParentNotified)</td>
+                        <td>@item.FollowUpNote</td>
+                        <td>@item.EventTypePhucTm?.TypeName</td>
+                        <td class="text-nowrap text-center">
+                            <a asp-action="Edit" asp-route-id="@item.MedicalEventPhucTmid" class="btn btn-sm btn-outline-warning me-1">
+                                ✏️ Edit
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.MedicalEventPhucTmid" class="btn btn-sm btn-outline-info me-1">
+                                🔍 Details
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.MedicalEventPhucTmid" class="btn btn-sm btn-outline-danger">
+                                🗑️ Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model SMMS.Repositories.PhucTM.Models.MedicalEventPhucTm
+
+@{
+    ViewData["Title"] = "Medical Event Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-success">📄 Medical Event Details</h2>
+
+    <div class="card shadow rounded-4 border-0 bg-light-subtle">
+        <div class="card-body">
+            <div class="row">
+                <!-- Cột trái -->
+                <div class="col-md-6">
+                    <p><strong>@Html.DisplayNameFor(m => m.EventTypePhucTm)</strong>: @Model.EventTypePhucTm?.TypeName</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.OccurredAt)</strong>: @Model.OccurredAt</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.ReportedBy)</strong>: @Model.ReportedBy</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.Description)</strong>: @Model.Description</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.Symptoms)</strong>: @Model.Symptoms</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.Temperature)</strong>: @Model.Temperature</p>
+                </div>
+
+                <!-- Cột phải -->
+                <div class="col-md-6">
+                    <p><strong>@Html.DisplayNameFor(m => m.BloodPressure)</strong>: @Model.BloodPressure</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.HeartRate)</strong>: @Model.HeartRate</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.FirstAidGiven)</strong>: @(Model.FirstAidGiven)</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.FirstAidDetails)</strong>: @Model.FirstAidDetails</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.ParentNotified)</strong>: @(Model.ParentNotified)</p>
+                    <p><strong>@Html.DisplayNameFor(m => m.FollowUpNote)</strong>: @Model.FollowUpNote</p>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary">← Back to List</a>
+                <a asp-action="Edit" asp-route-id="@Model.MedicalEventPhucTmid" class="btn btn-primary">✏️ Edit</a>
+            </div>
+        </div>
+    </div>
+</div>

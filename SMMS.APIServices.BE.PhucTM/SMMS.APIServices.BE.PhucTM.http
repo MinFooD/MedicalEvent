@@ -1,0 +1,6 @@
+@SMMS.APIServices.BE.PhucTM_HostAddress = http://localhost:5267
+
+GET {{SMMS.APIServices.BE.PhucTM_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
