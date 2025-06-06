@@ -37,6 +37,7 @@ namespace SMMS.Repositories.PhucTM
 				(x.Description.Contains(des1) || string.IsNullOrEmpty(des1))
 				&& (heartRate == 0 || x.HeartRate == heartRate || heartRate == null)
 				&& (x.EventTypePhucTm.Description.Contains (des2) || string.IsNullOrEmpty(des2)))
+				.OrderBy(x => x.HeartRate)
 				.ToListAsync();
 			return list ?? new List<MedicalEventPhucTm>();
 		}

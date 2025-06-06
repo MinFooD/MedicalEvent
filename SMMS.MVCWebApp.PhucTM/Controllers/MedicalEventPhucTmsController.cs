@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SMMS.Repositories.PhucTM.DBContext;
+using SMMS.Repositories.PhucTM.ModelExtensions;
 using SMMS.Repositories.PhucTM.Models;
 
 namespace SMMS.MVCWebApp.PhucTM.Controllers
@@ -15,8 +16,16 @@ namespace SMMS.MVCWebApp.PhucTM.Controllers
     {
 		private string APIEndPoint = "https://localhost:7071/api/";
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string des1, decimal heartRate, string des2, int currentPage = 1, int pageSize = 3)
 		{
+			var searchRequest = new SearchMedicalEventRequest
+			{
+				Des1 = des1,
+				HeartRate = heartRate,
+				Des2 = des2,
+				CurrentPage = currentPage,
+				PageSize = pageSize
+			};
 			using (var httpClient = new HttpClient())
 			{
 
@@ -27,16 +36,22 @@ namespace SMMS.MVCWebApp.PhucTM.Controllers
 
 
 
-				using (var response = await httpClient.GetAsync(APIEndPoint + "MedicalEventPhucTms"))
+				using (var response = await httpClient.PostAsJsonAsync(APIEndPoint + "MedicalEventPhucTms/Search", searchRequest))
 				{
 					if (response.IsSuccessStatusCode)
 					{
 						var content = await response.Content.ReadAsStringAsync();
-						var result = JsonConvert.DeserializeObject<List<MedicalEventPhucTm>>(content);
+						var result = JsonConvert.DeserializeObject<PaginationResult<List<MedicalEventPhucTm>>>(content);
 
 						if (result != null)
 						{
-							return View(result);
+							ViewBag.Des1 = des1;
+							ViewBag.HeartRate = heartRate;
+							ViewBag.Des2 = des2;
+							ViewBag.CurrentPage = currentPage;
+							ViewBag.PageSize = pageSize;
+							ViewBag.TotalItems = result.TotalItems;
+							return View(result.Items);
 						}
 					}
 				}

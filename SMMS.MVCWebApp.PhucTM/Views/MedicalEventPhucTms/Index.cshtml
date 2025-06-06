@@ -12,6 +12,27 @@
         </a>
     </div>
 
+    <form method="post" asp-action="Index" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label fw-bold">Description 1</label>
+        <input type="text" name="Description1" value="@ViewBag.Des1" class="form-control" placeholder="Nhập mô tả 1..." />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label fw-bold">Heart Rate</label>
+            <input type="text" name="HeartRate" value="@ViewBag.HeartRate" class="form-control" placeholder="Nhập nhịp tim..." />
+
+    </div>
+    <div class="col-md-3">
+        <label class="form-label fw-bold">Description 2</label>
+            <input type="text" name="Description2" value="@ViewBag.Des2" class="form-control" placeholder="Nhập mô tả 2..." />
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="bi bi-search"></i> Search
+        </button>
+    </div>
+</form>
+
     <div class="table-responsive shadow-sm rounded">
         <table class="table table-bordered table-hover align-middle">
             <thead class="table-light">
@@ -63,4 +84,48 @@
             </tbody>
         </table>
     </div>
+
+    <nav aria-label="Pagination Navigation" class="d-flex justify-content-center mt-4">
+    <ul class="pagination pagination-lg shadow-sm">
+
+        <!-- Nút Previous -->
+        <li class="page-item @(ViewBag.CurrentPage <= 1 ? "disabled" : "")">
+            <a class="page-link text-dark bg-light border-0 page-link-hover"
+               asp-action="Index"
+               asp-route-currentPage="@(ViewBag.CurrentPage - 1)"
+               asp-route-pageSize="@ViewBag.PageSize"
+               asp-route-des1="@ViewBag.Des1"
+               asp-route-heartRate="@ViewBag.HeartRate"
+               asp-route-des2="@ViewBag.Des2" >               
+                <i class="bi bi-chevron-left"></i> Previous
+            </a>
+        </li>
+
+        <!-- Các nút số trang -->
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link @(i == ViewBag.CurrentPage ? "bg-primary border-primary text-white" : "text-dark bg-light border-0 page-link-hover")"
+                   asp-action="Index"
+                   asp-route-currentPage="@i"
+                   asp-route-pageSize="@ViewBag.PageSize">  
+                    @i
+                </a>
+            </li>
+        }
+
+        <!-- Nút Next -->
+        <li class="page-item @(ViewBag.CurrentPage >= ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link text-dark bg-light border-0 page-link-hover"
+               asp-action="Index"
+               asp-route-currentPage="@(ViewBag.CurrentPage + 1)"
+               asp-route-pageSize="@ViewBag.PageSize"
+                   asp-route-des1="@ViewBag.Des1"
+                   asp-route-heartRate="@ViewBag.HeartRate"
+                   asp-route-des2="@ViewBag.Des2">
+                Next <i class="bi bi-chevron-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
 </div>
