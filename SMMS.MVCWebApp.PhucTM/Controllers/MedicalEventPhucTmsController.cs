@@ -306,6 +306,12 @@ namespace SMMS.MVCWebApp.PhucTM.Controllers
 			ViewData["EventTypePhucTmid"] = new SelectList(eventTypePhucTms, "EventTypePhucTmid", "TypeName", medicalEventPhucTm.EventTypePhucTmid);
 			return View(medicalEventPhucTm);
 		}
+
+		public async Task<IActionResult> EventTypePhucTmList()
+		{
+			return View();
+		}
+
 		/*
             ntext = context;
         }

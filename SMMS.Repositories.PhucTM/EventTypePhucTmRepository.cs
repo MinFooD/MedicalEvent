@@ -20,5 +20,12 @@ namespace SMMS.Repositories.PhucTM
 			var list = await _context.EventTypePhucTms.ToListAsync();
 			return list ?? new List<EventTypePhucTm>();
 		}
+
+		public async Task<int> CreateEventTypeAsync(EventTypePhucTm eventTypePhucTm)
+		{
+			_context.Add(eventTypePhucTm);
+			var result =  await _context.SaveChangesAsync();
+			return result;
+		}
 	}
 }

@@ -26,6 +26,14 @@ namespace SMMS.APIServices.BE.PhucTM.Controllers
 			return await _eventTypePhucTmService.GetAllAsync();
 		}
 
+		// POST api/<EventTypePhucTmsController>
+		[HttpPost]
+		public async Task<int> Post(EventTypePhucTm eventTypePhucTm)
+		{
+			var result = await _eventTypePhucTmService.CreateAsync(eventTypePhucTm);
+			return result;
+		}
+
 		//// GET api/<EventTypePhucTmsController>/5
 		//[HttpGet("{id}")]
 		//public string Get(int id)

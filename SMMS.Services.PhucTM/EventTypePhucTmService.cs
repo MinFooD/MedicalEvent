@@ -18,5 +18,11 @@ namespace SMMS.Services.PhucTM
 			var list = await _eventTypePhucTmRepository.GetAllEventTypesAsync();
 			return list ?? new List<EventTypePhucTm>();
 		}
+
+		public async Task<int> CreateAsync(EventTypePhucTm eventTypePhucTm)
+		{
+			var result = await _eventTypePhucTmRepository.CreateEventTypeAsync(eventTypePhucTm);
+			return result;
+		}
 	}
 }
