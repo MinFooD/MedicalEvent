@@ -24,5 +24,24 @@ namespace SMMS.Services.PhucTM
 			var result = await _eventTypePhucTmRepository.CreateEventTypeAsync(eventTypePhucTm);
 			return result;
 		}
+
+		public async Task<EventTypePhucTm> GetByIdAsync(int id)
+		{
+			var eventType = await _eventTypePhucTmRepository.GetByIdAsync(id);
+			return eventType;
+		}
+
+		public async Task<int> UpdateAsync(EventTypePhucTm eventTypePhucTm)
+		{
+			var result = await _eventTypePhucTmRepository.UpdateAsync(eventTypePhucTm);
+			return result;
+		}
+
+		public async Task<bool> DeleteAsync(int id)
+		{
+			var eventType = await _eventTypePhucTmRepository.GetByIdAsync(id);
+			var result = await _eventTypePhucTmRepository.RemoveAsync(eventType);
+			return result;
+		}
 	}
 }

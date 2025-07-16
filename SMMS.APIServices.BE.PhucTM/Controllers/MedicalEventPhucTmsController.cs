@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using SMMS.Repositories.PhucTM.ModelExtensions;
 using SMMS.Repositories.PhucTM.Models;
 using SMMS.Services.PhucTM;
@@ -24,6 +25,7 @@ namespace SMMS.APIServices.BE.PhucTM.Controllers
 		// GET: api/<MedicalEventPhucTmsController>
 		[HttpGet]
 		[Authorize(Roles ="1,2")]
+		[EnableQuery]
 		public async Task<List<MedicalEventPhucTm>> Get()
 		{
 			return await _medicalEventPhucTmService.GetAllMedicalEvents();
@@ -93,6 +95,14 @@ namespace SMMS.APIServices.BE.PhucTM.Controllers
 		public async Task<PaginationResult<List<MedicalEventPhucTm>>> Get(SearchMedicalEventRequest searchRequest)
 		{
 			return await _medicalEventPhucTmService.SearchWithPagingAsync(searchRequest);
+		}
+
+		[HttpGet("Get-Odata")]
+		[Authorize(Roles = "1,2")]
+		[EnableQuery]
+		public async Task<List<MedicalEventPhucTm>> Odata()
+		{
+			return await _medicalEventPhucTmService.GetAllMedicalEvents();
 		}
 	}
 }

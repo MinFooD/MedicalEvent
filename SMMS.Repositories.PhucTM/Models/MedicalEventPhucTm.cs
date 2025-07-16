@@ -2,11 +2,13 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SMMS.Repositories.PhucTM.Models;
 
 public partial class MedicalEventPhucTm
 {
+    [Key]
     public int MedicalEventPhucTmid { get; set; }
 
     public int? EventTypePhucTmid { get; set; }

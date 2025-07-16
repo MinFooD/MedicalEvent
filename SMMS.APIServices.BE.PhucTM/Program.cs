@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
+using SMMS.Repositories.PhucTM.Models;
 using SMMS.Services.PhucTM;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -67,6 +71,22 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 			// ClockSkew = TimeSpan.Zero
 		};
 	});
+
+static IEdmModel GetEdmModel()
+{
+	var odataBuilder = new ODataConventionModelBuilder();
+	odataBuilder.EntitySet<MedicalEventPhucTm>("MedicalEventsPhucTm");
+	odataBuilder.EntitySet<EventTypePhucTm>("EventTypesPhucTm");
+
+	return odataBuilder.GetEdmModel();
+}
+builder.Services.AddControllers().AddOData(options =>
+{
+	options.Select().Filter().OrderBy().Expand().SetMaxTop(null).Count();
+	options.AddRouteComponents("odata", GetEdmModel());
+});
+
+
 
 var app = builder.Build();
 

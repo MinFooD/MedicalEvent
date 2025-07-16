@@ -34,29 +34,25 @@ namespace SMMS.APIServices.BE.PhucTM.Controllers
 			return result;
 		}
 
-		//// GET api/<EventTypePhucTmsController>/5
-		//[HttpGet("{id}")]
-		//public string Get(int id)
-		//{
-		//	return "value";
-		//}
+		// GET api/<EventTypePhucTmsController>/5
+		[HttpGet("{id}")]
+		public async Task<EventTypePhucTm> Get(int id)
+		{
+			return await _eventTypePhucTmService.GetByIdAsync(id);
+		}
 
-		//// POST api/<EventTypePhucTmsController>
-		//[HttpPost]
-		//public void Post([FromBody] string value)
-		//{
-		//}
+		// PUT api/<EventTypePhucTmsController>/5
+		[HttpPut]
+		public async Task<int> Put(EventTypePhucTm eventTypePhucTm)
+		{
+			return await _eventTypePhucTmService.UpdateAsync(eventTypePhucTm);
+		}
 
-		//// PUT api/<EventTypePhucTmsController>/5
-		//[HttpPut("{id}")]
-		//public void Put(int id, [FromBody] string value)
-		//{
-		//}
-
-		//// DELETE api/<EventTypePhucTmsController>/5
-		//[HttpDelete("{id}")]
-		//public void Delete(int id)
-		//{
-		//}
+		// DELETE api/<EventTypePhucTmsController>/5
+		[HttpDelete("{id}")]
+		public async Task<bool> Delete(int id)
+		{
+			return await _eventTypePhucTmService.DeleteAsync(id);
+		}
 	}
 }
