@@ -16,13 +16,13 @@ namespace SMMS.MVCWebApp.PhucTM.Controllers
     {
 		private string APIEndPoint = "https://localhost:7071/api/";
 
-		public async Task<IActionResult> Index(string des1, decimal heartRate, string des2, int currentPage = 1, int pageSize = 3)
+		public async Task<IActionResult> Index(string Description1, decimal heartRate, string Description2, int currentPage = 1, int pageSize = 3)
 		{
 			var searchRequest = new SearchMedicalEventRequest
 			{
-				Des1 = des1,
+				Des1 = Description1,
 				HeartRate = heartRate,
-				Des2 = des2,
+				Des2 = Description2,
 				CurrentPage = currentPage,
 				PageSize = pageSize
 			};
@@ -45,9 +45,9 @@ namespace SMMS.MVCWebApp.PhucTM.Controllers
 
 						if (result != null)
 						{
-							ViewBag.Des1 = des1;
+							ViewBag.Des1 = Description1;
 							ViewBag.HeartRate = heartRate;
-							ViewBag.Des2 = des2;
+							ViewBag.Des2 = Description2;
 							ViewBag.CurrentPage = currentPage;
 							ViewBag.PageSize = pageSize;
 							ViewBag.TotalItems = result.TotalItems;
